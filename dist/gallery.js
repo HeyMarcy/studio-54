@@ -74,6 +74,18 @@ function getFullUrl(image) {
 }
 
 // ============================================================================
+// UTILITIES
+// ============================================================================
+
+/**
+ * Clean caption text by removing first 4 and last 7 characters
+ */
+function cleanCaption(text) {
+  if (!text || text.length <= 11) return text;
+  return text.slice(4, -7);
+}
+
+// ============================================================================
 // GALLERY RENDERER
 // ============================================================================
 
@@ -82,12 +94,13 @@ function getFullUrl(image) {
  */
 function createGalleryItem(image, index) {
   const sizeClass = image.size === 'full' ? 'w-full' : 'w-full md:w-1/2';
+  const caption = cleanCaption(image.alt);
   
   const item = document.createElement('div');
   item.className = `${sizeClass} p-1`;
   item.innerHTML = `
     <div class="overflow-hidden h-full w-full">
-      <a href="${getFullUrl(image)}" data-fancybox="gallery" data-caption="${image.alt}">
+      <a href="${getFullUrl(image)}" data-fancybox="gallery" data-caption="${caption}">
         <img 
           src="${getThumbnailUrl(image)}"
           alt="${image.alt}"
@@ -139,10 +152,11 @@ function buildGridLayout(images, container) {
   container.className = 'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4';
   
   images.forEach((image, index) => {
+    const caption = cleanCaption(image.alt);
     const item = document.createElement('div');
     item.className = 'mb-4 break-inside-avoid';
     item.innerHTML = `
-      <a href="${getFullUrl(image)}" data-fancybox="gallery" data-caption="${image.alt}" class="block overflow-hidden rounded-lg">
+      <a href="${getFullUrl(image)}" data-fancybox="gallery" data-caption="${caption}" class="block overflow-hidden rounded-lg">
         <img 
           src="${getThumbnailUrl(image)}"
           alt="${image.alt}"
