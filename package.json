@@ -1,0 +1,25 @@
+{
+  "name": "sophia-williams-portfolio",
+  "version": "1.0.0",
+  "description": "Photography portfolio with image gallery",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./input.css -o ./dist/output.css --watch --poll",
+    "build": "npx tailwindcss -i ./input.css -o ./dist/output.css --minify",
+    "fetch-images": "node scripts/fetch-images.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "cloudinary": "^2.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "keywords": [
+    "portfolio",
+    "gallery",
+    "photography",
+    "cloudinary"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+@layer base {
+  /* Smooth scrolling for the whole page */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  
+  /* Remove focus outline for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ============================================================================
+   COMPONENT STYLES
+   ============================================================================ */
+
+@layer components {
+  /* Gallery item hover effect */
+  .gallery-item {
+    @apply overflow-hidden;
+  }
+  
+  .gallery-item img {
+    @apply transition-transform duration-500 ease-out;
+  }
+  
+  .gallery-item:hover img {
+    @apply scale-110;
+  }
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+@layer utilities {
+  /* Remove tap highlight on mobile */
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent flickering on transform animations */
+  .smooth-edges {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Hardware acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Wave animation for icons/emojis */
+  .animate-wave {
+    animation: wave 2.5s infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
+  }
+}
+
+/* ============================================================================
+   KEYFRAME ANIMATIONS
+   ============================================================================ */
+
+@keyframes wave {
+  0%, 60%, 100% { 
+    transform: rotate(0deg); 
+  }
+  10% { 
+    transform: rotate(14deg); 
+  }
+  20% { 
+    transform: rotate(-8deg); 
+  }
+  30% { 
+    transform: rotate(14deg); 
+  }
+  40% { 
+    transform: rotate(-4deg); 
+  }
+  50% { 
+    transform: rotate(10deg); 
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   FANCYBOX CUSTOMIZATION (optional)
+   ============================================================================ */
+
+.fancybox__container {
+  --fancybox-bg: rgba(0, 0, 0, 0.95);
+}
+
+/* ============================================================================
+   REDUCED MOTION
+   Respect user preferences for reduced motion
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-wave {
+    animation: none;
+  }
+}
