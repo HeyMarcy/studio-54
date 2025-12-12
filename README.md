@@ -1,4 +1,4 @@
-# Sophia Williams Portfolio - Image Gallery
+# Image Gallery
 
 A responsive image gallery with lightbox functionality, optimized for performance.
 
